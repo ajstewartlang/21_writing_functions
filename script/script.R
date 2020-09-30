@@ -53,5 +53,14 @@ plot_my_data <- function(x) {
 read_in_data("https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data1.csv") %>%
   plot_my_data()
 
+square_the_values <- function(x) {
+  x <- x * x
+}
 
+starwars %>%
+  select_if(is.numeric) %>%
+  map_df(square_the_values)
 
+starwars %>%
+  select_if(is.numeric) %>%
+  map_df(~(.x <- .x * .x))
