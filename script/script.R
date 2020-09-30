@@ -24,7 +24,8 @@ my_plot_of_humans <- function(my_tibble, my_x, my_y, my_x_label, my_y_label) {
     geom_point() +
     coord_flip() +
     labs(x = my_x_label, y = my_y_label) +
-    theme_minimal()
+    theme_minimal() +
+    theme(text = element_text(size = 5))
 }
 
 my_plot_of_humans(my_tibble = starwars, 
@@ -38,4 +39,19 @@ my_plot_of_humans(my_tibble = starwars,
                   my_y = quote(height),
                   my_x_label = "Name",
                   my_y_label = "Height (cm)")
+
+read_in_data <- function(x) {
+  read_csv(x)
+}
+
+plot_my_data <- function(x) {
+  x %>%
+    ggplot(aes(x = Condition, y = RT)) +
+    geom_point()
+}
+
+read_in_data("https://raw.githubusercontent.com/ajstewartlang/11_glm_anova_pt1/master/data/ANOVA_data1.csv") %>%
+  plot_my_data()
+
+
 
